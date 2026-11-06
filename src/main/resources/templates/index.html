@@ -1,15 +1,95 @@
+
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{general/fragmentos :: head}"></head>
+
     <body>
-        <div>TODO write content</div>
+
+        <header th:replace="~{general/fragmentos :: header}"></header>
+
+        <main class="container mt-5">
+
+            <section th:if="${panel == 'inicio'}">
+
+                <div class="text-center mb-5">
+                    <h1>[[#{inicio.titulo}]]</h1>
+                    <p class="lead">[[#{inicio.descripcion}]]</p>
+                </div>
+
+                <div class="row g-4">
+
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+
+                                <h4 class="card-title">
+                                    [[#{plantilla.usuarios}]]
+                                </h4>
+
+                                <p class="card-text">
+                                    [[#{inicio.descripcionUsuarios}]]
+                                </p>
+
+                                <a th:href="@{/(panel=usuarios)}"
+                                   class="btn btn-primary">
+                                    [[#{accion.verModulo}]]
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+
+                                <h4 class="card-title">
+                                    [[#{plantilla.mascotas}]]
+                                </h4>
+
+                                <p class="card-text">
+                                    [[#{inicio.descripcionMascotas}]]
+                                </p>
+
+                                <a th:href="@{/(panel=mascotas)}"
+                                   class="btn btn-primary">
+                                    [[#{accion.verModulo}]]
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section th:if="${panel == 'usuarios'}">
+
+                <h2>[[#{usuario.listado}]]</h2>
+                <hr/>
+
+                <div class="alert alert-info">
+                    [[#{inicio.moduloPendiente}]]
+                </div>
+
+            </section>
+
+            <section th:if="${panel == 'mascotas'}">
+
+                <h2>[[#{mascota.listado}]]</h2>
+                <hr/>
+
+                <div class="alert alert-info">
+                    [[#{inicio.moduloPendiente}]]
+                </div>
+
+            </section>
+
+        </main>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+
     </body>
 </html>
